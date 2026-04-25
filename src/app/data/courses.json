@@ -1,0 +1,77 @@
+
+{  
+    "courses": [
+        {
+            "id": 1,
+            "title": "Web Development Bootcamp",
+            "description": "Learn HTML, CSS, JavaScript, React, and Node.js from scratch",
+            "instructor": "John Doe",
+            "duration": "12 weeks",
+            "price": "$499",
+            "level": "Beginner",
+            "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+            "rating": 4.8,
+            "students": 1234
+        },
+        {
+            "id": 2,
+            "title": "Python Programming Masterclass",
+            "description": "Master Python programming from basics to advanced concepts",
+            "instructor": "Jane Smith",
+            "duration": "10 weeks",
+            "price": "$399",
+            "level": "Intermediate",
+            "image": "https://images.unsplash.com/photo-1526379095098-d400fd0bf935",
+            "rating": 4.9,
+            "students": 2345
+        },
+        {
+            "id": 3,
+            "title": "UI/UX Design Fundamentals",
+            "description": "Learn design principles, Figma, and create stunning user interfaces",
+            "instructor": "Mike Johnson",
+            "duration": "8 weeks",
+            "price": "$299",
+            "level": "Beginner",
+            "image": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e",
+            "rating": 4.7,
+            "students": 876
+        },
+        {
+            "id": 4,
+            "title": "Data Science & Machine Learning",
+            "description": "Learn data analysis, visualization, and ML algorithms",
+            "instructor": "Sarah Williams",
+            "duration": "16 weeks",
+            "price": "$699",
+            "level": "Advanced",
+            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+            "rating": 4.9,
+            "students": 1567
+        },
+        {
+            "id": 5,
+            "title": "UI/UX Design Fundamentals",
+            "description": "Learn design principles, Figma, and create stunning user interfaces",
+            "instructor": "Mike Johnson",
+            "duration": "8 weeks",
+            "price": "$299",
+            "level": "Beginner",
+            "image": "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e",
+            "rating": 4.7,
+            "students": 876
+        },
+        {
+            "id": 6,
+            "title": "Data Science & Machine Learning",
+            "description": "Learn data analysis, visualization, and ML algorithms",
+            "instructor": "Sarah Williams",
+            "duration": "16 weeks",
+            "price": "$699",
+            "level": "Advanced",
+            "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
+            "rating": 4.9,
+            "students": 1567
+        }
+    ]
+}
