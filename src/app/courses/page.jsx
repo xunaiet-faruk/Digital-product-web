@@ -16,11 +16,13 @@ import {
 import { MdSecurity } from 'react-icons/md';
 import coursesData from '@/app/data/courses.json';
 import {  useRouter } from 'next/navigation';
+import { useAuth } from '../context/AuthProvider';
 
 const Page = () => {
     const { courses } = coursesData;
     const router = useRouter();
     const [hoveredCourse, setHoveredCourse] = useState(null);
+    const {user} =useAuth();
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -285,7 +287,13 @@ const Page = () => {
                                         <span className="text-sm text-gray-500 line-through ml-2">${course.originalPrice || Math.round(course.price * 1.5)}</span>
                                     </div>
                                     <motion.button
-                                        onClick={() => router.push(`/courses/${course.id}`)}
+                                        onClick={() => {
+                                            if (!user) {
+                                                router.push("/login");
+                                            } else {
+                                                router.push(`/courses/${course.id}`);
+                                            }
+                                        }}
                                         className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white py-1 px-2 rounded-lg"
                                         whileHover={{ scale: 1.1 }}
                                         whileTap={{ scale: 0.95 }}
