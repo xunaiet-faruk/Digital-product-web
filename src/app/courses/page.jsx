@@ -289,7 +289,7 @@ const Page = () => {
                                     <motion.button
                                         onClick={() => {
                                             if (!user) {
-                                                router.push("/login");
+                                                router.push("Authentication/login");
                                             } else {
                                                 router.push(`/courses/${course.id}`);
                                             }
