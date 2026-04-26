@@ -281,20 +281,8 @@ const Navbar = () => {
                                             <div className="px-4 py-2">
                                                 <p className="text-gray-500 text-xs uppercase tracking-wider">Course Management</p>
                                             </div>
-                                            <button
-                                                onClick={handleAddcontent}
-                                                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-indigo-600/20 hover:text-white transition-all duration-200"
-                                            >
-                                                <FaTachometerAlt className="text-indigo-400" />
-                                                <span className="font-medium">Add Courses</span>
-                                            </button>
-                                            <button
-                                                onClick={handleManageCourses}
-                                                className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:bg-indigo-600/20 hover:text-white transition-all duration-200"
-                                            >
-                                                <FaTachometerAlt className="text-indigo-400" />
-                                                <span className="font-medium">Manage Courses</span>
-                                            </button>
+                                           
+                                           
                                         </div>
                                     )}
                                 </div>
