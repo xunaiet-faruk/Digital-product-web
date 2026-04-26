@@ -40,7 +40,7 @@ const Hero = () => {
                 <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
             </div>
 
-            <div className="relative container mx-auto px-4 pt-32 pb-20 md:pt-40  md:pb-28">
+            <div className="relative container mx-auto px-4 pt-32 lg:pt-12 md:pt-12 pb-20   md:pb-28">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}

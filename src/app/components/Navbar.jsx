@@ -24,11 +24,9 @@ const Navbar = () => {
         { name: 'Courses', path: '/courses', icon: FaBook },
         { name: 'Templates', path: '/tamplates', icon: FaFileAlt },
         { name: 'About', path: '/about', icon: FaInfoCircle },
-        { name: 'Cart', path: '/cart', icon: FaShoppingCart },
         { name: 'Admin', path: '/admin', icon: FaUserShield },
     ];
 
-    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -42,7 +40,6 @@ const Navbar = () => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    // Prevent body scroll when mobile menu is open
     useEffect(() => {
         if (isMobileMenuOpen) {
             document.body.style.overflow = 'hidden';
@@ -95,7 +92,6 @@ const Navbar = () => {
                         </Link>
                     </motion.div>
 
-                    {/* Desktop Navigation - Hidden on mobile */}
                     <div className="hidden md:flex space-x-1">
                         {navItems.map((item) => (
                             <Link
@@ -123,7 +119,6 @@ const Navbar = () => {
                         ))}
                     </div>
 
-                    {/* Right Section - User Dropdown & Mobile Menu Button */}
                     <div className="flex items-center gap-3">
                         {/* User Dropdown */}
                         <div className="relative" ref={dropdownRef}>
@@ -156,7 +151,7 @@ const Navbar = () => {
                                         <FaChevronDown className={`text-gray-400 text-xs transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
                                     </motion.button>
 
-                                    {/* User Dropdown Menu */}
+                                   
                                     <AnimatePresence>
                                         {isDropdownOpen && (
                                             <motion.div
@@ -206,7 +201,6 @@ const Navbar = () => {
                             )}
                         </div>
 
-                        {/* Mobile Menu Button - Visible only on mobile/tablet */}
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="md:hidden text-white p-2 rounded-lg hover:bg-gray-800 transition-colors mobile-menu-button"
@@ -221,7 +215,7 @@ const Navbar = () => {
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <>
-                        {/* Backdrop */}
+                    
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -231,7 +225,7 @@ const Navbar = () => {
                             onClick={() => setIsMobileMenuOpen(false)}
                         />
 
-                        {/* Sidebar Menu */}
+              
                         <motion.div
                             ref={mobileMenuRef}
                             initial={{ x: '100%' }}
@@ -241,7 +235,7 @@ const Navbar = () => {
                             className="fixed right-0 top-0 h-full w-64 sm:w-80 bg-gradient-to-b from-gray-900 to-gray-800 shadow-2xl z-50 md:hidden"
                         >
                             <div className="flex flex-col h-full">
-                                {/* Header */}
+                              
                                 <div className="p-6 border-b border-gray-800">
                                     <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                                         Menu
@@ -272,22 +266,14 @@ const Navbar = () => {
                                         ))}
                                     </div>
 
-                                    {/* Divider */}
+                              
                                     <div className="h-px bg-gray-800 my-4 mx-3"></div>
 
-                                    {/* Course Management Links (for logged in users) */}
-                                    {user && (
-                                        <div className="space-y-1 px-3">
-                                            <div className="px-4 py-2">
-                                                <p className="text-gray-500 text-xs uppercase tracking-wider">Course Management</p>
-                                            </div>
-                                           
-                                           
-                                        </div>
-                                    )}
+                                   
+                                  
                                 </div>
 
-                                {/* Footer */}
+                               
                                 <div className="p-4 border-t border-gray-800">
                                     {user ? (
                                         <button
