@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaUser, FaEnvelope, FaLock, FaPhone, FaUserPlus } from 'react-icons/fa';
+import { FaUser, FaEnvelope, FaLock, FaPhone, FaUserPlus, FaGoogle } from 'react-icons/fa';
 import { useAuth } from '@/app/context/AuthProvider';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -13,7 +13,8 @@ const Register = () => {
     const [mobile, setMobile] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const { signup } = useAuth();
+    const [googleLoading, setGoogleLoading] = useState(false);
+    const { signup, googleSignIn } = useAuth();
     const router = useRouter();
 
     const handleSubmit = async (e) => {
@@ -33,6 +34,22 @@ const Register = () => {
         }
     };
 
+    const handleGoogleSignIn = async () => {
+        setError('');
+        setGoogleLoading(true);
+
+        try {
+            const result = await googleSignIn();
+            console.log("Google sign in successful:", result.user);
+            router.push('/');
+        } catch (err) {
+            console.error("Google sign in error:", err);
+            setError(getGoogleErrorMessage(err.code));
+        } finally {
+            setGoogleLoading(false);
+        }
+    };
+
     const getErrorMessage = (errorCode) => {
         switch (errorCode) {
             case 'auth/email-already-in-use':
@@ -45,6 +62,19 @@ const Register = () => {
                 return 'Email/password signup is not enabled.';
             default:
                 return 'Failed to create account. Please try again.';
+        }
+    };
+
+    const getGoogleErrorMessage = (errorCode) => {
+        switch (errorCode) {
+            case 'auth/popup-closed-by-user':
+                return 'Sign in cancelled. Please try again.';
+            case 'auth/popup-blocked':
+                return 'Popup was blocked. Please allow popups for this site.';
+            case 'auth/unauthorized-domain':
+                return 'This domain is not authorized. Please contact support.';
+            default:
+                return 'Failed to sign in with Google. Please try again.';
         }
     };
 
@@ -71,6 +101,28 @@ const Register = () => {
                         {error}
                     </div>
                 )}
+
+                {/* Google Sign In Button */}
+                <motion.button
+                    onClick={handleGoogleSignIn}
+                    disabled={googleLoading || loading}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full bg-white text-gray-800 py-3 rounded-lg font-semibold flex items-center justify-center gap-3 hover:bg-gray-100 transition-all duration-300 mb-6 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                    <FaGoogle className="text-red-500 text-xl" />
+                    {googleLoading ? 'Signing in...' : 'Continue with Google'}
+                </motion.button>
+
+                {/* Divider */}
+                <div className="relative mb-6">
+                    <div className="absolute inset-0 flex items-center">
+                        <div className="w-full border-t border-gray-700"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                        <span className="px-2 bg-gradient-to-br from-gray-900 to-gray-800 text-gray-400">Or register with email</span>
+                    </div>
+                </div>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-5">
@@ -149,7 +201,7 @@ const Register = () => {
                     {/* Submit Button */}
                     <motion.button
                         type="submit"
-                        disabled={loading}
+                        disabled={loading || googleLoading}
                         whileHover={{ scale: loading ? 1 : 1.02 }}
                         whileTap={{ scale: loading ? 1 : 0.98 }}
                         className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-lg font-semibold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-indigo-600/25 transition-all duration-300 mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
@@ -159,7 +211,7 @@ const Register = () => {
                     </motion.button>
                 </form>
 
-              
+                {/* Login Link */}
                 <div className="mt-6 text-center">
                     <p className="text-gray-400">
                         Already have an account?{' '}

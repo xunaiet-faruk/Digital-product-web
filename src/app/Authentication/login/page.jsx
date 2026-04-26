@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaLock, FaSignInAlt } from 'react-icons/fa';
+import { FaEnvelope, FaGoogle, FaLock, FaSignInAlt } from 'react-icons/fa';
 import { useAuth } from '@/app/context/AuthProvider';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -10,8 +10,9 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [googleLoading, setGoogleLoading] = useState(false);
     const [loading, setLoading] = useState(false);
-    const { login } = useAuth();
+    const { login, googleSignIn } = useAuth();
     const router = useRouter();
 
 
@@ -32,6 +33,22 @@ const Login = () => {
         }
     };
 
+    const handleGoogleSignIn = async () => {
+        setError('');
+        setGoogleLoading(true);
+
+        try {
+            const result = await googleSignIn();
+            console.log("Google sign in successful:", result.user);
+            router.push('/');
+        } catch (err) {
+            console.error("Google sign in error:", err);
+            setError(getGoogleErrorMessage(err.code));
+        } finally {
+            setGoogleLoading(false);
+        }
+    };
+
     return (
         <div className="min-h-screen bg-black flex items-center justify-center px-4">
             {/* Simple Background */}
@@ -48,6 +65,17 @@ const Login = () => {
                     <h2 className="text-3xl font-bold text-white mb-2">Welcome Back</h2>
                     <p className="text-gray-400">Please sign in to your account</p>
                 </div>
+
+                 <motion.button
+                                    onClick={handleGoogleSignIn}
+                                    disabled={googleLoading || loading}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-full bg-white text-gray-800 py-3 rounded-lg font-semibold flex items-center justify-center gap-3 hover:bg-gray-100 transition-all duration-300 mb-6 disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    <FaGoogle className="text-red-500 text-xl" />
+                                    {googleLoading ? 'Signing in...' : 'Continue with Google'}
+                                </motion.button>
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-6">

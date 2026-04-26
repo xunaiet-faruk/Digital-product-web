@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 const Searchdata = ({ onSearch }) => {
     const [query, setQuery] = useState("");
 
-    // live search effect
     useEffect(() => {
         if (onSearch) {
             onSearch(query);

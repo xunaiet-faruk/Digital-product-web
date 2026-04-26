@@ -22,6 +22,10 @@ export const AuthProvider = ({ children }) => {
         return await signOut(auth);
     };
 
+    const googleSignIn = async () => {
+       return await signInWithPopup(auth, googleProvider);
+    };
+
     useEffect(() => {
         const unsub = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -33,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, loading, signup, login , logout}}>
+        <AuthContext.Provider value={{ user, loading, signup, login , logout, googleSignIn}}>
             {children}
         </AuthContext.Provider>
     );
