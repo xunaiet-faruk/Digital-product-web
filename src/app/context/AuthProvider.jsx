@@ -1,7 +1,7 @@
 "use client";
 
 import { auth } from "@/lib/firebase";
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
@@ -23,7 +23,8 @@ export const AuthProvider = ({ children }) => {
     };
 
     const googleSignIn = async () => {
-       return await signInWithPopup(auth, googleProvider);
+        const provider = new GoogleAuthProvider();
+        return await signInWithPopup(auth, provider);
     };
 
     useEffect(() => {
