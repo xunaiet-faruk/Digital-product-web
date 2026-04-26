@@ -71,7 +71,7 @@ const ManageCourses = () => {
                                 <h1 className="text-2xl sm:text-3xl font-bold text-white">Manage Courses</h1>
                                 <p className="text-gray-400 text-sm sm:text-base mt-1">View and manage all your courses</p>
                             </div>
-                            <Link href="/addproduct" className="w-full sm:w-auto">
+                            <Link href="/addcourses" className="w-full sm:w-auto">
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}

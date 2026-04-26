@@ -11,7 +11,8 @@ import {
     FaGraduationCap,
     FaInfinity,
     FaPlayCircle,
-    FaChartLine
+    FaChartLine,
+    FaSearch
 } from 'react-icons/fa';
 import { MdSecurity } from 'react-icons/md';
 import coursesData from '@/app/data/courses.json';
@@ -22,6 +23,7 @@ const Page = () => {
     const { courses } = coursesData;
     const router = useRouter();
     const [hoveredCourse, setHoveredCourse] = useState(null);
+    const [query, setQuery] = useState("");
     const {user} =useAuth();
 
     const containerVariants = {
@@ -41,6 +43,12 @@ const Page = () => {
         }
 
         router.push(`/courses/${courseId}`);
+    };
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (onSearch) onSearch(query);
     };
 
 
@@ -235,6 +243,31 @@ const Page = () => {
                     <p className="text-gray-400 max-w-2xl mx-auto text-lg">
                         Hand-picked courses to accelerate your career growth
                     </p>
+
+                    <form
+                        onSubmit={handleSubmit}
+                        className="container mx-auto"
+                    >
+                        <div className="flex items-center bg-gray-900 border border-gray-700 rounded-xl overflow-hidden focus-within:border-indigo-500 transition">
+
+                            {/* Input */}
+                            <input
+                                type="text"
+                                value={query}
+                                onChange={(e) => setQuery(e.target.value)}
+                                placeholder="Search courses..."
+                                className="w-full px-4 py-3 bg-transparent text-white placeholder-gray-400 outline-none"
+                            />
+
+                            {/* Button */}
+                            <button
+                                type="submit"
+                                className="px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:opacity-90 transition"
+                            >
+                                <FaSearch />
+                            </button>
+                        </div>
+                    </form>
                 </motion.div>
 
                 <motion.div
