@@ -68,7 +68,6 @@ const ManageCourses = () => {
                                     <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Level</th>
                                     <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Students</th>
                                     <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Rating</th>
-                                    <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Status</th>
                                     <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Actions</th>
                                 </tr>
                             </thead>
@@ -82,8 +81,8 @@ const ManageCourses = () => {
                                         className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors"
                                     >
                                         <td className="px-3 py-3 text-gray-300 text-sm">{course.id}</td>
-                                        <td className="px-3 py-3 text-white font-medium text-sm">{course.title}</td>
-                                        <td className="px-3 py-3 text-gray-300 text-sm">{course.instructor}</td>
+                                        <td className="px-3 py-3 text-white font-medium text-sm">{course?.title}</td>
+                                        <td className="px-3 py-3 text-gray-300 text-sm">{course?.instructorName}</td>
                                         <td className="px-3 py-3 text-indigo-400 font-semibold text-sm">${course.price}</td>
                                         <td className="px-3 py-3">
                                             <span className={`px-2 py-1 rounded-full text-xs font-medium ${course.level === 'Beginner' ? 'bg-green-500/20 text-green-400' :
@@ -95,12 +94,7 @@ const ManageCourses = () => {
                                         </td>
                                         <td className="px-3 py-3 text-gray-300 text-sm">{course.students.toLocaleString()}</td>
                                         <td className="px-3 py-3 text-yellow-400 text-sm">{course.rating} ★</td>
-                                        <td className="px-3 py-3">
-                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${course.status === 'Active' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
-                                                }`}>
-                                                {course.status}
-                                            </span>
-                                        </td>
+                                   
                                         <td className="px-3 py-3">
                                             <div className="flex gap-2">
                                                 <Link href={`/manage-courses/${course.id}`}>
@@ -158,7 +152,7 @@ const ManageCourses = () => {
                                     <div className="grid grid-cols-2 gap-2 text-sm">
                                         <div>
                                             <p className="text-gray-500 text-xs">Instructor</p>
-                                            <p className="text-gray-300">{course.instructor}</p>
+                                            <p className="text-gray-300">{course.instructorName}</p>
                                         </div>
                                         <div>
                                             <p className="text-gray-500 text-xs">Price</p>
