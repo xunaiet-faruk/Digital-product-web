@@ -290,50 +290,7 @@ const AboutPage = () => {
                     </div>
                 </div>
 
-                <div className="bg-gradient-to-b from-gray-900/50 to-black py-20">
-                    <div className="container mx-auto px-4">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            className="text-center mb-12"
-                        >
-                            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                                What Our Students Say
-                            </h2>
-                            <p className="text-gray-400 text-lg">Real success stories from our global community</p>
-                        </motion.div>
-
-                        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {[
-                                { name: "Sarah Johnson", role: "Product Manager", content: "This platform changed my career! The courses are practical and the instructors are amazing.", rating: 5 },
-                                { name: "Michael Chen", role: "Software Engineer", content: "Best investment I ever made. Got a promotion within 3 months of completing the course.", rating: 5 },
-                                { name: "Priya Patel", role: "Marketing Director", content: "Finally a learning platform that delivers real value. Highly recommended!", rating: 5 },
-                            ].map((testimonial, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: index * 0.1 }}
-                                    viewport={{ once: true }}
-                                    whileHover={{ y: -5 }}
-                                    className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-800"
-                                >
-                                    <div className="flex mb-4">
-                                        {[...Array(testimonial.rating)].map((_, i) => (
-                                            <FaStar key={i} className="text-yellow-400" />
-                                        ))}
-                                    </div>
-                                    <p className="text-gray-300 mb-4 leading-relaxed">"{testimonial.content}"</p>
-                                    <div>
-                                        <p className="text-white font-semibold">{testimonial.name}</p>
-                                        <p className="text-gray-500 text-sm">{testimonial.role}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
+               
                 <div className="container mx-auto px-4 py-20">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
