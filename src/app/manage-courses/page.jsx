@@ -224,39 +224,7 @@ const ManageCourses = () => {
                         </div>
                     )}
 
-                    {/* Pagination */}
-                    {courses.length > 0 && totalPages > 1 && (
-                        <div className="mt-6 pt-4 border-t border-gray-800">
-                            <div className="flex justify-between items-center">
-                                <p className="text-gray-400 text-sm">
-                                    Showing {startIndex + 1} to {Math.min(endIndex, courses.length)} of {courses.length} courses
-                                </p>
-                                <div className="flex gap-2">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                                        disabled={currentPage === 1}
-                                        className="p-2 bg-gray-800 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700 transition"
-                                    >
-                                        <FaChevronLeft size={14} className="text-gray-300" />
-                                    </motion.button>
-                                    <span className="px-3 py-1 bg-indigo-600 rounded-lg text-white text-sm">
-                                        {currentPage} / {totalPages}
-                                    </span>
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                                        disabled={currentPage === totalPages}
-                                        className="p-2 bg-gray-800 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-700 transition"
-                                    >
-                                        <FaChevronRight size={14} className="text-gray-300" />
-                                    </motion.button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
+               
 
                     {/* Footer with Total Count */}
                     {courses.length > 0 && (
