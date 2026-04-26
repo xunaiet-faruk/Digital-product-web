@@ -1,23 +1,21 @@
 "use client";
-import React, { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
 
 const Searchdata = ({ onSearch }) => {
     const [query, setQuery] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (onSearch) onSearch(query);
-    };
+    // live search effect
+    useEffect(() => {
+        if (onSearch) {
+            onSearch(query);
+        }
+    }, [query]);
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="w-full max-w-md mx-auto"
-        >
+        <div className="w-full max-w-md mx-auto">
             <div className="flex items-center bg-gray-900 border border-gray-700 rounded-xl overflow-hidden focus-within:border-indigo-500 transition">
 
-                {/* Input */}
+                {/* Input only */}
                 <input
                     type="text"
                     value={query}
@@ -26,15 +24,8 @@ const Searchdata = ({ onSearch }) => {
                     className="w-full px-4 py-3 bg-transparent text-white placeholder-gray-400 outline-none"
                 />
 
-                {/* Button */}
-                <button
-                    type="submit"
-                    className="px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:opacity-90 transition"
-                >
-                    <FaSearch />
-                </button>
             </div>
-        </form>
+        </div>
     );
 };
 

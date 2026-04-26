@@ -44,11 +44,11 @@ const Page = () => {
             return;
         }
 
-        setCoursesList(
-            coursesData.courses.filter(course =>
-                course.title.toLowerCase().includes(searchValue)
-            )
+        const filtered = coursesData.courses.filter(course =>
+            course.title.toLowerCase().includes(searchValue)
         );
+
+        setCoursesList(filtered);
     };
 
     const handleView = (courseId) => {
