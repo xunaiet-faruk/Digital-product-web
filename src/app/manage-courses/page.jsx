@@ -1,26 +1,28 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEdit, FaTrash, FaEye, FaPlus, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from 'next/link';
 
 const ManageCourses = () => {
-    const [courses, setCourses] = useState([
-        { id: 1, title: 'Complete Web Development', instructor: 'John Doe', price: 49.99, level: 'Beginner', students: 1234, rating: 4.8, status: 'Active' },
-        { id: 2, title: 'React Mastery', instructor: 'Jane Smith', price: 59.99, level: 'Intermediate', students: 892, rating: 4.9, status: 'Active' },
-        { id: 3, title: 'Python for Data Science', instructor: 'Mike Johnson', price: 69.99, level: 'Advanced', students: 2156, rating: 4.7, status: 'Inactive' },
-        { id: 4, title: 'UI/UX Design Fundamentals', instructor: 'Sarah Williams', price: 39.99, level: 'Beginner', students: 567, rating: 4.6, status: 'Active' },
-        { id: 5, title: 'Digital Marketing Masterclass', instructor: 'Alex Brown', price: 44.99, level: 'Beginner', students: 2341, rating: 4.9, status: 'Active' },
-    ]);
+    const [courses, setCourses] = useState([]);
 
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
 
     const handleDelete = (id) => {
-        if (confirm('Are you sure you want to delete this course?')) {
-            setCourses(courses.filter(course => course.id !== id));
-        }
+        const DeletedCorses =courses.filter(course => course.id !== id);
+        setCourses(DeletedCorses);
+        localStorage.setItem('courses', JSON.stringify(DeletedCorses));
     };
+
+    useEffect(()=>{
+
+        const Allcourses =JSON.parse(localStorage.getItem('courses')) || [];
+        setCourses(Allcourses);
+    
+    
+    },[])
 
     // Pagination
     const totalPages = Math.ceil(courses.length / itemsPerPage);

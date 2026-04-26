@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useAuth } from '../context/AuthProvider';
 
 const Addcourses = () => {
     const [formData, setFormData] = useState({
@@ -18,6 +19,7 @@ const Addcourses = () => {
 
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState('');
+    const {user} =useAuth();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,8 +35,14 @@ const Addcourses = () => {
         setMessage('');
 
         try {
-           
-            console.log('Course Data:', formData);
+
+            const newCorses = {
+                ...formData,
+                id: Date.now()
+            }
+            const existingCourse =JSON.parse(localStorage.getItem('courses')) || [];
+            const update =[...existingCourse, newCorses];
+            localStorage.setItem('courses', JSON.stringify(update));
             setMessage('Course added successfully!');
             setFormData({
                 email: '',
@@ -69,8 +77,8 @@ const Addcourses = () => {
 
                     {message && (
                         <div className={`mb-4 p-3 rounded-lg text-center ${message.includes('success')
-                                ? 'bg-green-500/20 text-green-400 border border-green-500/50'
-                                : 'bg-red-500/20 text-red-400 border border-red-500/50'
+                            ? 'bg-green-500/20 text-green-400 border border-green-500/50'
+                            : 'bg-red-500/20 text-red-400 border border-red-500/50'
                             }`}>
                             {message}
                         </div>
@@ -83,9 +91,9 @@ const Addcourses = () => {
                             <input
                                 type="email"
                                 name="email"
-                                value={formData.email}
+                                value={user?.email}
                                 onChange={handleChange}
-                                required
+                                readOnly
                                 className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-indigo-500"
                                 placeholder="instructor@example.com"
                             />
