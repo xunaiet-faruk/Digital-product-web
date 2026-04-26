@@ -103,22 +103,18 @@ const ManageCourses = () => {
                                         </td>
                                         <td className="px-3 py-3">
                                             <div className="flex gap-2">
-                                                <motion.button
-                                                    whileHover={{ scale: 1.1 }}
-                                                    whileTap={{ scale: 0.9 }}
-                                                    className="p-1.5 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition"
-                                                    title="View"
-                                                >
-                                                    <FaEye size={14} />
-                                                </motion.button>
-                                                <motion.button
-                                                    whileHover={{ scale: 1.1 }}
-                                                    whileTap={{ scale: 0.9 }}
-                                                    className="p-1.5 bg-yellow-500/20 text-yellow-400 rounded-lg hover:bg-yellow-500/30 transition"
-                                                    title="Edit"
-                                                >
-                                                    <FaEdit size={14} />
-                                                </motion.button>
+                                                <Link href={`/manage-courses/${course.id}`}>
+                                                    <motion.button
+                                                        whileHover={{ scale: 1.1 }}
+                                                        whileTap={{ scale: 0.9 }}
+                                                        className="p-1.5 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition"
+                                                        title="View"
+                                                    >
+                                                        <FaEye size={14} />
+                                                    </motion.button>
+
+                                                </Link>
+                                                
                                                 <motion.button
                                                     whileHover={{ scale: 1.1 }}
                                                     whileTap={{ scale: 0.9 }}
@@ -188,6 +184,7 @@ const ManageCourses = () => {
                                     </div>
 
                                     <div className="flex gap-2 pt-2 border-t border-gray-700">
+                                        <Link href={`/manage-courses/${course.id}`}>
                                         <motion.button
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
@@ -195,13 +192,8 @@ const ManageCourses = () => {
                                         >
                                             View
                                         </motion.button>
-                                        <motion.button
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="flex-1 py-2 bg-yellow-500/20 text-yellow-400 rounded-lg text-sm font-medium"
-                                        >
-                                            Edit
-                                        </motion.button>
+                                        </Link>
+                                      
                                         <motion.button
                                             whileHover={{ scale: 1.05 }}
                                             whileTap={{ scale: 0.95 }}
