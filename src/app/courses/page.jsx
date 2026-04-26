@@ -36,20 +36,45 @@ const Page = () => {
         }
     };
 
-    const handleSearch = (value) => {
-        const searchValue = value.toLowerCase().trim();
 
-        if (!searchValue) {
-            setCoursesList(coursesData.courses);
-            return;
+    const handleSearch = (searchQuery, filters) => {
+        let filtered = [...coursesData.courses];
+
+        // Search by title
+        if (searchQuery && searchQuery.trim()) {
+            const query = searchQuery.toLowerCase().trim();
+            filtered = filtered.filter(course =>
+                course.title.toLowerCase().includes(query)
+            );
         }
 
-        const filtered = coursesData.courses.filter(course =>
-            course.title.toLowerCase().includes(searchValue)
-        );
+        // Filter by price range
+        if (filters.priceRange) {
+            filtered = filtered.filter(course => {
+                // Extract numeric price from string (e.g., "$499" -> 499)
+                const priceStr = course.price.toString();
+                const price = parseInt(priceStr.replace(/[^0-9]/g, ''));
+
+                switch (filters.priceRange) {
+                    case 'under300': return price < 300;
+                    case '300-500': return price >= 300 && price <= 500;
+                    case '500-700': return price >= 500 && price <= 700;
+                    case 'over700': return price > 700;
+                    default: return true;
+                }
+            });
+        }
+
+        // Filter by level
+        if (filters.level) {
+            filtered = filtered.filter(course =>
+                course.level === filters.level
+            );
+        }
 
         setCoursesList(filtered);
     };
+
 
     const handleView = (courseId) => {
         if (!user) {

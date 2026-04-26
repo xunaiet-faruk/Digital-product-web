@@ -215,7 +215,7 @@ export default function TemplatesPage() {
             <div className="relative overflow-hidden pt-32 pb-20 lg:pt-12 lg:pb-28">
                
 
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-20">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
