@@ -99,7 +99,7 @@ const Page = () => {
                     }}
                 />
 
-                <div className="relative container mx-auto px-4 py-28 md:py-40">
+                <div className="relative container mx-auto px-4 ">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
