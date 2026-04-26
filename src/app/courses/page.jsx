@@ -40,7 +40,6 @@ const Page = () => {
     const handleSearch = (searchQuery, filters) => {
         let filtered = [...coursesData.courses];
 
-        // Search by title
         if (searchQuery && searchQuery.trim()) {
             const query = searchQuery.toLowerCase().trim();
             filtered = filtered.filter(course =>
@@ -48,10 +47,8 @@ const Page = () => {
             );
         }
 
-        // Filter by price range
         if (filters.priceRange) {
             filtered = filtered.filter(course => {
-                // Extract numeric price from string (e.g., "$499" -> 499)
                 const priceStr = course.price.toString();
                 const price = parseInt(priceStr.replace(/[^0-9]/g, ''));
 
@@ -65,7 +62,6 @@ const Page = () => {
             });
         }
 
-        // Filter by level
         if (filters.level) {
             filtered = filtered.filter(course =>
                 course.level === filters.level

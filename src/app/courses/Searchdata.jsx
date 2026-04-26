@@ -42,10 +42,8 @@ const Searchdata = ({ onSearch }) => {
 
     return (
         <div className="w-full max-w-4xl mx-auto px-4">
-            {/* Search Bar */}
             <div className="relative">
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                    {/* Search Input */}
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">   
                     <div className="flex-1 flex items-center bg-gray-900 border border-gray-700 rounded-xl overflow-hidden focus-within:border-indigo-500 transition-all">
                         <FaSearch className="ml-4 text-gray-500" />
                         <input
@@ -65,7 +63,7 @@ const Searchdata = ({ onSearch }) => {
                         )}
                     </div>
 
-                    {/* Filter Button */}
+             
                     <button
                         onClick={() => setShowFilters(!showFilters)}
                         className={`px-4 py-3 rounded-xl flex items-center justify-center gap-2 transition-all ${showFilters || activeFiltersCount > 0
@@ -84,7 +82,6 @@ const Searchdata = ({ onSearch }) => {
                 </div>
             </div>
 
-            {/* Filters Panel */}
             {showFilters && (
                 <div className="mt-4 bg-gray-900/95 border border-gray-700 rounded-xl p-4 sm:p-6 backdrop-blur-sm">
                     <div className="flex justify-between items-center mb-4">
@@ -99,7 +96,6 @@ const Searchdata = ({ onSearch }) => {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {/* Price Range Filter */}
                         <div>
                             <label className="block text-gray-400 text-xs sm:text-sm mb-2 flex items-center gap-2">
                                 <FaDollarSign className="text-indigo-400" />
@@ -116,7 +112,6 @@ const Searchdata = ({ onSearch }) => {
                             </select>
                         </div>
 
-                        {/* Level Filter */}
                         <div>
                             <label className="block text-gray-400 text-xs sm:text-sm mb-2 flex items-center gap-2">
                                 <FaGraduationCap className="text-indigo-400" />
@@ -135,7 +130,6 @@ const Searchdata = ({ onSearch }) => {
                         </div>
                     </div>
 
-                    {/* Active Filters Display */}
                     {activeFiltersCount > 0 && (
                         <div className="mt-4 pt-4 border-t border-gray-800">
                             <div className="flex flex-wrap gap-2">

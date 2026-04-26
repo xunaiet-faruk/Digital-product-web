@@ -72,6 +72,18 @@
             "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
             "rating": 4.9,
             "students": 1567
+        },
+        {
+            "id": 7,
+            "title": "Web Development Bootcamp",
+            "description": "Learn HTML, CSS, JavaScript, React, and Node.js from scratch",
+            "instructor": "John Doe",
+            "duration": "12 weeks",
+            "price": "$499",
+            "level": "Beginner",
+            "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+            "rating": 4.8,
+            "students": 1234
         }
     ]
 }
