@@ -11,19 +11,19 @@ import {
     FaGraduationCap,
     FaInfinity,
     FaPlayCircle,
-    FaChartLine,
-    FaSearch
+    FaChartLine
 } from 'react-icons/fa';
 import { MdSecurity } from 'react-icons/md';
 import coursesData from '@/app/data/courses.json';
 import {  useRouter } from 'next/navigation';
 import { useAuth } from '../context/AuthProvider';
+import Searchdata from './Searchdata';
 
 const Page = () => {
     const { courses } = coursesData;
     const router = useRouter();
     const [hoveredCourse, setHoveredCourse] = useState(null);
-    const [query, setQuery] = useState("");
+    const [coursesList, setCoursesList] = useState(coursesData.courses);
     const {user} =useAuth();
 
     const containerVariants = {
@@ -36,6 +36,21 @@ const Page = () => {
         }
     };
 
+    const handleSearch = (value) => {
+        const searchValue = value.toLowerCase().trim();
+
+        if (!searchValue) {
+            setCoursesList(coursesData.courses);
+            return;
+        }
+
+        setCoursesList(
+            coursesData.courses.filter(course =>
+                course.title.toLowerCase().includes(searchValue)
+            )
+        );
+    };
+
     const handleView = (courseId) => {
         if (!user) {
             router.push(`/Authentication/login?redirect=/courses/${courseId}`);
@@ -43,12 +58,6 @@ const Page = () => {
         }
 
         router.push(`/courses/${courseId}`);
-    };
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (onSearch) onSearch(query);
     };
 
 
@@ -244,30 +253,7 @@ const Page = () => {
                         Hand-picked courses to accelerate your career growth
                     </p>
 
-                    <form
-                        onSubmit={handleSubmit}
-                        className="container mx-auto"
-                    >
-                        <div className="flex items-center bg-gray-900 border border-gray-700 rounded-xl overflow-hidden focus-within:border-indigo-500 transition">
-
-                            {/* Input */}
-                            <input
-                                type="text"
-                                value={query}
-                                onChange={(e) => setQuery(e.target.value)}
-                                placeholder="Search courses..."
-                                className="w-full px-4 py-3 bg-transparent text-white placeholder-gray-400 outline-none"
-                            />
-
-                            {/* Button */}
-                            <button
-                                type="submit"
-                                className="px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:opacity-90 transition"
-                            >
-                                <FaSearch />
-                            </button>
-                        </div>
-                    </form>
+                    <Searchdata onSearch={handleSearch} />
                 </motion.div>
 
                 <motion.div
@@ -277,7 +263,7 @@ const Page = () => {
                     whileInView="visible"
                     viewport={{ once: true }}
                 >
-                    {courses.map((course, index) => (
+                    {coursesList.map((course, index) => (
                         <motion.div
                             key={course.id}
                             initial={{ opacity: 0, y: 30 }}
