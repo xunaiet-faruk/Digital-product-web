@@ -80,16 +80,14 @@ const Register = () => {
 
     return (
         <div className="min-h-screen bg-black flex items-center justify-center px-4">
-            {/* Simple Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
-
-            {/* Register Card */}
+            
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 w-full max-w-md border border-gray-800 shadow-2xl"
             >
-                {/* Header */}
+                
                 <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold text-white mb-2">Create Account</h2>
                     <p className="text-gray-400">Sign up to get started</p>
@@ -126,7 +124,7 @@ const Register = () => {
 
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="space-y-5">
-                    {/* Name Field */}
+                    {/* Name */}
                     <div>
                         <label className="block text-gray-300 text-sm font-medium mb-2">
                             Full Name
@@ -144,7 +142,7 @@ const Register = () => {
                         </div>
                     </div>
 
-                    {/* Email Field */}
+                    {/* Email  */}
                     <div>
                         <label className="block text-gray-300 text-sm font-medium mb-2">
                             Email Address
@@ -162,7 +160,7 @@ const Register = () => {
                         </div>
                     </div>
 
-                    {/* Mobile Field */}
+                    {/* Mobile */}
                     <div>
                         <label className="block text-gray-300 text-sm font-medium mb-2">
                             Mobile Number

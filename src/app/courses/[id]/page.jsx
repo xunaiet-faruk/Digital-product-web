@@ -72,7 +72,6 @@ export default function SingleCoursePage() {
     return (
         <ProtectedRoute>
             <div className="bg-gradient-to-b from-black via-gray-900 to-black">
-                {/* Back Button */}
                 <div className="container mx-auto px-4 pt-8">
                     <motion.button
                         onClick={() => router.back()}
@@ -84,7 +83,7 @@ export default function SingleCoursePage() {
                     </motion.button>
                 </div>
 
-                {/* Hero Section */}
+                
                 <div className="relative overflow-hidden">
                     <div className="absolute inset-0">
                         <img
@@ -197,7 +196,7 @@ export default function SingleCoursePage() {
                     </div>
                 </div>
 
-                {/* Course Content Tabs */}
+                {/* Course Tabs */}
                 <div className="container mx-auto px-4 py-16">
                     <div className="flex flex-wrap gap-4 border-b border-gray-800 mb-8">
                         {['overview', 'curriculum', 'reviews'].map((tab) => (
@@ -218,7 +217,7 @@ export default function SingleCoursePage() {
                         ))}
                     </div>
 
-                    {/* Overview Tab */}
+                    
                     {activeTab === 'overview' && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -275,7 +274,7 @@ export default function SingleCoursePage() {
                         </motion.div>
                     )}
 
-                    {/* Curriculum Tab */}
+                    
                     {activeTab === 'curriculum' && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -306,7 +305,7 @@ export default function SingleCoursePage() {
                         </motion.div>
                     )}
 
-                    {/* Reviews Tab */}
+                    
                     {activeTab === 'reviews' && (
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}

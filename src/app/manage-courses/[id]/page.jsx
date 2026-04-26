@@ -30,7 +30,7 @@ const ManageDetails = () => {
      <ProtectedRoute>
             <div className="min-h-screen bg-black py-8 px-4">
                 <div className="container mx-auto max-w-4xl">
-                    {/* Back Button */}
+                   
                     <button
                         onClick={() => router.back()}
                         className="flex items-center gap-2 text-gray-400 hover:text-white mb-6 transition-colors"
@@ -39,9 +39,9 @@ const ManageDetails = () => {
                         Back to Courses
                     </button>
 
-                    {/* Course Details Card */}
+               
                     <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-gray-800">
-                        {/* Image Section */}
+                     
                         {course.image && (
                             <div className="w-full h-64 md:h-80 overflow-hidden">
                                 <img
@@ -52,14 +52,13 @@ const ManageDetails = () => {
                             </div>
                         )}
 
-                        {/* Content Section */}
                         <div className="p-6 md:p-8">
-                            {/* Title */}
+                       
                             <h1 className="text-2xl md:text-3xl font-bold text-white mb-4">
                                 {course.title}
                             </h1>
 
-                            {/* Rating */}
+                        
                             <div className="flex items-center gap-2 mb-4">
                                 <div className="flex">
                                     {[...Array(5)].map((_, i) => (
@@ -77,12 +76,12 @@ const ManageDetails = () => {
                                 </span>
                             </div>
 
-                            {/* Description */}
+                      
                             <p className="text-gray-300 leading-relaxed mb-6">
                                 {course.description || "No description available"}
                             </p>
 
-                            {/* Course Info Grid */}
+                        
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                                 <div className="flex items-center gap-3 p-3 bg-gray-800/50 rounded-lg">
                                     <FaUser className="text-indigo-400 text-xl" />
@@ -123,7 +122,7 @@ const ManageDetails = () => {
                                 </div>
                             </div>
 
-                            {/* Students Info */}
+                        
                             {course.students && (
                                 <div className="mb-6 p-3 bg-gray-800/50 rounded-lg">
                                     <p className="text-gray-500 text-xs">Total Students</p>

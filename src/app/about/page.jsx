@@ -40,7 +40,6 @@ const AboutPage = () => {
 
     return (
         <>
-            {/* SEO Metadata */}
             <head>
                 <title>About LearnHub | Transform Your Career With Expert-Led Courses</title>
                 <meta name="description" content="LearnHub is a leading online learning platform with 50,000+ students worldwide. Join us to learn from industry experts and advance your career with practical skills." />
@@ -53,12 +52,8 @@ const AboutPage = () => {
             </head>
 
             <div className="bg-black">
-                {/* Spacer */}
                 <div className="h-16 md:h-20"></div>
-
-                {/* Hero Section with Background Animation */}
                 <div className="relative overflow-hidden">
-                    {/* Animated Background */}
                     <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black">
                         <div className="absolute top-20 left-10 w-72 h-72 bg-indigo-600 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
                         <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-600 rounded-full filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
@@ -125,7 +120,6 @@ const AboutPage = () => {
                     </div>
                 </div>
 
-                {/* Stats Section - Floating Cards */}
                 <div className="container mx-auto px-4 -mt-8 relative z-10">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                         {stats.map((stat, index) => (
@@ -147,8 +141,6 @@ const AboutPage = () => {
                         ))}
                     </div>
                 </div>
-
-                {/* Mission & Vision Section */}
                 <div className="container mx-auto px-4 py-20">
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <motion.div
@@ -216,8 +208,6 @@ const AboutPage = () => {
                         </motion.div>
                     </div>
                 </div>
-
-                {/* Why Choose Us Section */}
                 <div className="bg-gradient-to-b from-gray-900/50 to-black py-20">
                     <div className="container mx-auto px-4">
                         <motion.div
@@ -263,7 +253,6 @@ const AboutPage = () => {
                     </div>
                 </div>
 
-                {/* Team Section */}
                 <div className="container mx-auto px-4 py-20">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -301,7 +290,6 @@ const AboutPage = () => {
                     </div>
                 </div>
 
-                {/* Testimonial Section */}
                 <div className="bg-gradient-to-b from-gray-900/50 to-black py-20">
                     <div className="container mx-auto px-4">
                         <motion.div
@@ -346,8 +334,6 @@ const AboutPage = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* CTA Section */}
                 <div className="container mx-auto px-4 py-20">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

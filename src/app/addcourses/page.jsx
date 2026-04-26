@@ -196,7 +196,7 @@ const Addcourses = () => {
                                 </div>
                             </div>
 
-                            {/* Image URL */}
+                            {/* Image  */}
                             <div>
                                 <label className="block text-gray-300 text-sm font-medium mb-2">Image URL *</label>
                                 <input

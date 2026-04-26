@@ -50,7 +50,7 @@ export default function StatsCards({ stats }) {
                             </h3>
                             <p className="text-gray-400 text-sm mb-4">{stat.title}</p>
 
-                            {/* Progress Bar */}
+                           
                             <div className="mt-2">
                                 <div className="h-1.5 bg-gray-700 rounded-full overflow-hidden">
                                     <motion.div

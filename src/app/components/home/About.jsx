@@ -26,7 +26,7 @@ const About = () => {
 
     return (
         <div className="relative overflow-hidden py-20 ">
-            {/* Background Pattern */}
+           
             <div className="absolute inset-0 opacity-5">
                 <div className="absolute inset-0" style={{
                     backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366F1' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
@@ -56,7 +56,7 @@ const About = () => {
 
                 <div className="max-w-6xl mx-auto mt-20">
                     <div className="grid lg:grid-cols-2 gap-8">
-                        {/* Left Side - Image with Stats */}
+                      
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -64,7 +64,7 @@ const About = () => {
                             viewport={{ once: true }}
                             className="space-y-6"
                         >
-                            {/* Main Image Card */}
+                            
                             <div className="relative group">
                                 <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
                                 <div className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl overflow-hidden border border-gray-700">
@@ -77,7 +77,7 @@ const About = () => {
                                 </div>
                             </div>
 
-                            {/* Floating Stats Cards */}
+                          
                             <div className="grid grid-cols-2 gap-4">
                                 {stats.map((stat, idx) => (
                                     <motion.div
@@ -99,14 +99,14 @@ const About = () => {
                             </div>
                         </motion.div>
 
-                        {/* Right Side - Content */}
+                   
                         <motion.div
                             initial={{ opacity: 0, x: 30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                             className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl p-8 md:p-10 border border-gray-700 shadow-2xl"
                         >
-                            {/* Quote Icon */}
+                           
                             <div className="mb-6">
                                 <FaQuoteRight className="text-4xl text-indigo-500/30" />
                             </div>
@@ -121,7 +121,7 @@ const About = () => {
                                 With over a decade of experience building applications for Fortune 500 companies, I've helped thousands of developers master web development. My teaching philosophy focuses on practical, real-world projects that prepare you for the industry.
                             </p>
 
-                            {/* Expertise Areas */}
+                      
                             <div className="mb-8">
                                 <h4 className="text-sm font-semibold text-gray-400 mb-3">Expertise Areas</h4>
                                 <div className="grid grid-cols-2 gap-2">
@@ -180,7 +180,7 @@ const About = () => {
                 </div>
             </div>
 
-            {/* Decorative Elements */}
+         
             <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent"></div>
         </div>
     );

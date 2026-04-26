@@ -212,7 +212,6 @@ export default function TemplatesPage() {
 
     return (
         <div className="">
-            {/* Hero Section with Animation */}
             <div className="relative overflow-hidden pt-32 pb-20 lg:pt-30 lg:pb-28">
                
 
@@ -223,7 +222,7 @@ export default function TemplatesPage() {
                         transition={{ duration: 0.6 }}
                         className="text-center max-w-4xl mx-auto"
                     >
-                        {/* Badge */}
+                      
                         <motion.div
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
@@ -304,7 +303,7 @@ export default function TemplatesPage() {
 
             {/* Main Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                {/* Category Filters */}
+               
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -338,7 +337,6 @@ export default function TemplatesPage() {
 
 
 
-                {/* Templates Grid/List */}
                 <AnimatePresence mode="wait">
                     {viewMode === 'grid' ? (
                         <motion.div
@@ -451,7 +449,7 @@ export default function TemplatesPage() {
                                     className="bg-white rounded-xl hover:shadow-lg transition-all duration-200 border border-gray-100 p-6"
                                 >
                                     <div className="flex flex-col md:flex-row gap-6">
-                                        {/* Image - Left Side */}
+                                      
                                         <div className="w-full md:w-48 h-32 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden relative">
                                             <img
                                                 src={template.image}
@@ -465,7 +463,6 @@ export default function TemplatesPage() {
                                             </div>
                                         </div>
 
-                                        {/* Content - Right Side */}
                                         <div className="flex-grow">
                                             <div className="flex flex-wrap items-start justify-between gap-4">
                                                 <div className="flex-grow">
@@ -528,7 +525,7 @@ export default function TemplatesPage() {
                     )}
                 </AnimatePresence>
 
-                {/* Empty State */}
+              
                 {filteredTemplates.length === 0 && (
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}

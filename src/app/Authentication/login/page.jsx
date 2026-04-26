@@ -51,16 +51,13 @@ const Login = () => {
 
     return (
         <div className="min-h-screen bg-black flex items-center justify-center px-4">
-            {/* Simple Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
-
-            {/* Login Card */}
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 w-full max-w-md border border-gray-800 shadow-2xl"
             >
-                {/* Header */}
+
                 <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold text-white mb-2">Welcome Back</h2>
                     <p className="text-gray-400">Please sign in to your account</p>

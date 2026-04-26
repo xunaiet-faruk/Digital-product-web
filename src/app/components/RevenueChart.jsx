@@ -65,7 +65,7 @@ export default function RevenueChart({ data }) {
                     </div>
                 </div>
 
-                {/* Recharts Area Chart */}
+          
                 <div className="h-80 w-full">
                     <ResponsiveContainer width="100%" height="100%">
                         <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>

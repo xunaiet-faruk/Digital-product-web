@@ -14,7 +14,7 @@ const Searchdata = ({ onSearch }) => {
         <div className="w-full max-w-md mx-auto">
             <div className="flex items-center bg-gray-900 border border-gray-700 rounded-xl overflow-hidden focus-within:border-indigo-500 transition">
 
-                {/* Input only */}
+              
                 <input
                     type="text"
                     value={query}

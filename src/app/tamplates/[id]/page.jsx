@@ -140,7 +140,6 @@ export default function SingleTemplatePage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-            {/* Back Button */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
                 <button
                     onClick={() => router.back()}
@@ -151,10 +150,8 @@ export default function SingleTemplatePage() {
                 </button>
             </div>
 
-            {/* Template Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
                 <div className="grid lg:grid-cols-2 gap-12">
-                    {/* Image Section */}
                     <div className="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden h-[400px] lg:h-[500px]">
                         <img
                             src={template.image}
@@ -183,7 +180,6 @@ export default function SingleTemplatePage() {
                         </div>
                     </div>
 
-                    {/* Info Section */}
                     <div className="space-y-6">
                         <div>
                             <div className="flex items-center gap-2 mb-3">
@@ -258,7 +254,6 @@ export default function SingleTemplatePage() {
                 </div>
             </div>
 
-            {/* Tabs Section */}
             <div className="border-t border-gray-200 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex gap-8">
@@ -284,7 +279,6 @@ export default function SingleTemplatePage() {
                 </div>
             </div>
 
-            {/* Tab Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 {activeTab === 'overview' && (
                     <div className="grid md:grid-cols-2 gap-6">

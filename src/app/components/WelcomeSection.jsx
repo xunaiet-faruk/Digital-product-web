@@ -45,7 +45,7 @@ export default function WelcomeSection() {
                 </div>
             </div>
 
-            {/* Quick Stats Summary */}
+           
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 pt-6 border-t border-gray-700">
                 <div>
                     <p className="text-gray-400 text-sm">Today's Sales</p>

@@ -65,7 +65,7 @@ const ManageCourses = () => {
                         animate={{ opacity: 1, y: 0 }}
                         className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-800"
                     >
-                        {/* Header */}
+                      
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                             <div>
                                 <h1 className="text-2xl sm:text-3xl font-bold text-white">Manage Courses</h1>
@@ -163,7 +163,6 @@ const ManageCourses = () => {
                                     transition={{ delay: index * 0.05 }}
                                     className="bg-gray-800/50 rounded-lg p-4 border border-gray-700"
                                 >
-                                    {/* Divider between cards - each card is separated */}
                                     <div className="space-y-3">
                                         <div className="flex justify-between items-start">
                                             <div>
@@ -227,10 +226,8 @@ const ManageCourses = () => {
                                     </div>
                                 </motion.div>
                             ))}
-                            {/* Divider line between each card is automatically created by the gap-3 spacing */}
                         </div>
 
-                        {/* Empty State */}
                         {courses.length === 0 && (
                             <div className="text-center py-12">
                                 <p className="text-gray-400">No courses found. Click "Add New Course" to get started.</p>
@@ -239,7 +236,6 @@ const ManageCourses = () => {
 
 
 
-                        {/* Footer with Total Count */}
                         {courses.length > 0 && (
                             <div className="mt-4 pt-4 border-t border-gray-800">
                                 <p className="text-gray-400 text-sm">Total Courses: {courses.length}</p>
