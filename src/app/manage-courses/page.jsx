@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEdit, FaTrash, FaEye, FaPlus, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from 'next/link';
+import Swal from 'sweetalert2';
+import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute';
 
 const ManageCourses = () => {
     const [courses, setCourses] = useState([]);
@@ -10,10 +12,34 @@ const ManageCourses = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
 
+ 
+
     const handleDelete = (id) => {
-        const DeletedCorses =courses.filter(course => course.id !== id);
-        setCourses(DeletedCorses);
-        localStorage.setItem('courses', JSON.stringify(DeletedCorses));
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to recover this course!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#ef4444",
+            cancelButtonColor: "#6b7280",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+
+                const DeletedCorses = courses.filter(course => course.id !== id);
+                setCourses(DeletedCorses);
+                localStorage.setItem('courses', JSON.stringify(DeletedCorses));
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Course has been deleted.",
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+            }
+        });
     };
 
     useEffect(()=>{
@@ -31,196 +57,198 @@ const ManageCourses = () => {
     const currentCourses = courses.slice(startIndex, endIndex);
 
     return (
-        <div className="min-h-screen bg-black py-8 px-3 sm:py-12 sm:px-4">
-            <div className="container mx-auto max-w-full lg:max-w-7xl">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-800"
-                >
-                    {/* Header */}
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                        <div>
-                            <h1 className="text-2xl sm:text-3xl font-bold text-white">Manage Courses</h1>
-                            <p className="text-gray-400 text-sm sm:text-base mt-1">View and manage all your courses</p>
+        <ProtectedRoute>
+            <div className="min-h-screen bg-black py-8 px-3 sm:py-12 sm:px-4">
+                <div className="container mx-auto max-w-full lg:max-w-7xl">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-800"
+                    >
+                        {/* Header */}
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                            <div>
+                                <h1 className="text-2xl sm:text-3xl font-bold text-white">Manage Courses</h1>
+                                <p className="text-gray-400 text-sm sm:text-base mt-1">View and manage all your courses</p>
+                            </div>
+                            <Link href="/addproduct" className="w-full sm:w-auto">
+                                <motion.button
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 hover:shadow-lg transition-all w-full sm:w-auto"
+                                >
+                                    <FaPlus className="text-sm" />
+                                    Add New Course
+                                </motion.button>
+                            </Link>
                         </div>
-                        <Link href="/addproduct" className="w-full sm:w-auto">
-                            <motion.button
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg flex items-center justify-center gap-2 hover:shadow-lg transition-all w-full sm:w-auto"
-                            >
-                                <FaPlus className="text-sm" />
-                                Add New Course
-                            </motion.button>
-                        </Link>
-                    </div>
 
-                    {/* Desktop Table View (hidden on mobile) */}
-                    <div className="hidden md:block overflow-x-auto">
-                        <table className="w-full text-left">
-                            <thead className="border-b-2 border-gray-700">
-                                <tr>
-                                    <th className="px-3 py-3 text-gray-300 font-semibold text-sm">ID</th>
-                                    <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Title</th>
-                                    <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Instructor</th>
-                                    <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Price</th>
-                                    <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Level</th>
-                                    <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Students</th>
-                                    <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Rating</th>
-                                    <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {currentCourses.map((course, index) => (
-                                    <motion.tr
-                                        key={course.id}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: index * 0.05 }}
-                                        className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors"
-                                    >
-                                        <td className="px-3 py-3 text-gray-300 text-sm">{course.id}</td>
-                                        <td className="px-3 py-3 text-white font-medium text-sm">{course?.title}</td>
-                                        <td className="px-3 py-3 text-gray-300 text-sm">{course?.instructorName}</td>
-                                        <td className="px-3 py-3 text-indigo-400 font-semibold text-sm">${course.price}</td>
-                                        <td className="px-3 py-3">
-                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${course.level === 'Beginner' ? 'bg-green-500/20 text-green-400' :
+                        {/* Desktop Table View (hidden on mobile) */}
+                        <div className="hidden md:block overflow-x-auto">
+                            <table className="w-full text-left">
+                                <thead className="border-b-2 border-gray-700">
+                                    <tr>
+                                        <th className="px-3 py-3 text-gray-300 font-semibold text-sm">ID</th>
+                                        <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Title</th>
+                                        <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Instructor</th>
+                                        <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Price</th>
+                                        <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Level</th>
+                                        <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Students</th>
+                                        <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Rating</th>
+                                        <th className="px-3 py-3 text-gray-300 font-semibold text-sm">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {currentCourses.map((course, index) => (
+                                        <motion.tr
+                                            key={course.id}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: index * 0.05 }}
+                                            className="border-b border-gray-800 hover:bg-gray-800/30 transition-colors"
+                                        >
+                                            <td className="px-3 py-3 text-gray-300 text-sm">{course.id}</td>
+                                            <td className="px-3 py-3 text-white font-medium text-sm">{course?.title}</td>
+                                            <td className="px-3 py-3 text-gray-300 text-sm">{course?.instructorName}</td>
+                                            <td className="px-3 py-3 text-indigo-400 font-semibold text-sm">${course.price}</td>
+                                            <td className="px-3 py-3">
+                                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${course.level === 'Beginner' ? 'bg-green-500/20 text-green-400' :
                                                     course.level === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
                                                         'bg-red-500/20 text-red-400'
-                                                }`}>
-                                                {course.level}
-                                            </span>
-                                        </td>
-                                        <td className="px-3 py-3 text-gray-300 text-sm">{course.students.toLocaleString()}</td>
-                                        <td className="px-3 py-3 text-yellow-400 text-sm">{course.rating} ★</td>
-                                   
-                                        <td className="px-3 py-3">
-                                            <div className="flex gap-2">
-                                                <Link href={`/manage-courses/${course.id}`}>
+                                                    }`}>
+                                                    {course.level}
+                                                </span>
+                                            </td>
+                                            <td className="px-3 py-3 text-gray-300 text-sm">{course.students.toLocaleString()}</td>
+                                            <td className="px-3 py-3 text-yellow-400 text-sm">{course.rating} ★</td>
+
+                                            <td className="px-3 py-3">
+                                                <div className="flex gap-2">
+                                                    <Link href={`/manage-courses/${course.id}`}>
+                                                        <motion.button
+                                                            whileHover={{ scale: 1.1 }}
+                                                            whileTap={{ scale: 0.9 }}
+                                                            className="p-1.5 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition"
+                                                            title="View"
+                                                        >
+                                                            <FaEye size={14} />
+                                                        </motion.button>
+
+                                                    </Link>
+
                                                     <motion.button
                                                         whileHover={{ scale: 1.1 }}
                                                         whileTap={{ scale: 0.9 }}
-                                                        className="p-1.5 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition"
-                                                        title="View"
+                                                        onClick={() => handleDelete(course.id)}
+                                                        className="p-1.5 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 transition"
+                                                        title="Delete"
                                                     >
-                                                        <FaEye size={14} />
+                                                        <FaTrash size={14} />
                                                     </motion.button>
+                                                </div>
+                                            </td>
+                                        </motion.tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
 
-                                                </Link>
-                                                
-                                                <motion.button
-                                                    whileHover={{ scale: 1.1 }}
-                                                    whileTap={{ scale: 0.9 }}
-                                                    onClick={() => handleDelete(course.id)}
-                                                    className="p-1.5 bg-red-500/20 text-red-400 rounded-lg hover:bg-red-500/30 transition"
-                                                    title="Delete"
-                                                >
-                                                    <FaTrash size={14} />
-                                                </motion.button>
+                        {/* Mobile Card View (visible on mobile only) */}
+                        <div className="md:hidden space-y-3">
+                            {currentCourses.map((course, index) => (
+                                <motion.div
+                                    key={course.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.05 }}
+                                    className="bg-gray-800/50 rounded-lg p-4 border border-gray-700"
+                                >
+                                    {/* Divider between cards - each card is separated */}
+                                    <div className="space-y-3">
+                                        <div className="flex justify-between items-start">
+                                            <div>
+                                                <h3 className="text-white font-semibold text-base">{course.title}</h3>
+                                                <p className="text-gray-400 text-xs mt-1">ID: #{course.id}</p>
                                             </div>
-                                        </td>
-                                    </motion.tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {/* Mobile Card View (visible on mobile only) */}
-                    <div className="md:hidden space-y-3">
-                        {currentCourses.map((course, index) => (
-                            <motion.div
-                                key={course.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: index * 0.05 }}
-                                className="bg-gray-800/50 rounded-lg p-4 border border-gray-700"
-                            >
-                                {/* Divider between cards - each card is separated */}
-                                <div className="space-y-3">
-                                    <div className="flex justify-between items-start">
-                                        <div>
-                                            <h3 className="text-white font-semibold text-base">{course.title}</h3>
-                                            <p className="text-gray-400 text-xs mt-1">ID: #{course.id}</p>
-                                        </div>
-                                        <span className={`px-2 py-1 rounded-full text-xs font-medium ${course.status === 'Active' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
-                                            }`}>
-                                            {course.status}
-                                        </span>
-                                    </div>
-
-                                    <div className="grid grid-cols-2 gap-2 text-sm">
-                                        <div>
-                                            <p className="text-gray-500 text-xs">Instructor</p>
-                                            <p className="text-gray-300">{course.instructorName}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-gray-500 text-xs">Price</p>
-                                            <p className="text-indigo-400 font-semibold">${course.price}</p>
-                                        </div>
-                                        <div>
-                                            <p className="text-gray-500 text-xs">Level</p>
-                                            <span className={`px-2 py-0.5 rounded-full text-xs font-medium inline-block ${course.level === 'Beginner' ? 'bg-green-500/20 text-green-400' :
-                                                    course.level === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
-                                                        'bg-red-500/20 text-red-400'
+                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${course.status === 'Active' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'
                                                 }`}>
-                                                {course.level}
+                                                {course.status}
                                             </span>
                                         </div>
-                                        <div>
-                                            <p className="text-gray-500 text-xs">Students</p>
-                                            <p className="text-gray-300">{course.students.toLocaleString()}</p>
+
+                                        <div className="grid grid-cols-2 gap-2 text-sm">
+                                            <div>
+                                                <p className="text-gray-500 text-xs">Instructor</p>
+                                                <p className="text-gray-300">{course.instructorName}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-gray-500 text-xs">Price</p>
+                                                <p className="text-indigo-400 font-semibold">${course.price}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-gray-500 text-xs">Level</p>
+                                                <span className={`px-2 py-0.5 rounded-full text-xs font-medium inline-block ${course.level === 'Beginner' ? 'bg-green-500/20 text-green-400' :
+                                                    course.level === 'Intermediate' ? 'bg-yellow-500/20 text-yellow-400' :
+                                                        'bg-red-500/20 text-red-400'
+                                                    }`}>
+                                                    {course.level}
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <p className="text-gray-500 text-xs">Students</p>
+                                                <p className="text-gray-300">{course.students.toLocaleString()}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-gray-500 text-xs">Rating</p>
+                                                <p className="text-yellow-400">{course.rating} ★</p>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <p className="text-gray-500 text-xs">Rating</p>
-                                            <p className="text-yellow-400">{course.rating} ★</p>
+
+                                        <div className="flex gap-2 pt-2 border-t border-gray-700">
+                                            <Link href={`/manage-courses/${course.id}`}>
+                                                <motion.button
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                    className="flex-1 py-2 bg-blue-500/20 text-blue-400 rounded-lg text-sm font-medium"
+                                                >
+                                                    View
+                                                </motion.button>
+                                            </Link>
+
+                                            <motion.button
+                                                whileHover={{ scale: 1.05 }}
+                                                whileTap={{ scale: 0.95 }}
+                                                onClick={() => handleDelete(course.id)}
+                                                className="flex-1 py-2 bg-red-500/20 text-red-400 rounded-lg text-sm font-medium"
+                                            >
+                                                Delete
+                                            </motion.button>
                                         </div>
                                     </div>
-
-                                    <div className="flex gap-2 pt-2 border-t border-gray-700">
-                                        <Link href={`/manage-courses/${course.id}`}>
-                                        <motion.button
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            className="flex-1 py-2 bg-blue-500/20 text-blue-400 rounded-lg text-sm font-medium"
-                                        >
-                                            View
-                                        </motion.button>
-                                        </Link>
-                                      
-                                        <motion.button
-                                            whileHover={{ scale: 1.05 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            onClick={() => handleDelete(course.id)}
-                                            className="flex-1 py-2 bg-red-500/20 text-red-400 rounded-lg text-sm font-medium"
-                                        >
-                                            Delete
-                                        </motion.button>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                        {/* Divider line between each card is automatically created by the gap-3 spacing */}
-                    </div>
-
-                    {/* Empty State */}
-                    {courses.length === 0 && (
-                        <div className="text-center py-12">
-                            <p className="text-gray-400">No courses found. Click "Add New Course" to get started.</p>
+                                </motion.div>
+                            ))}
+                            {/* Divider line between each card is automatically created by the gap-3 spacing */}
                         </div>
-                    )}
 
-               
+                        {/* Empty State */}
+                        {courses.length === 0 && (
+                            <div className="text-center py-12">
+                                <p className="text-gray-400">No courses found. Click "Add New Course" to get started.</p>
+                            </div>
+                        )}
 
-                    {/* Footer with Total Count */}
-                    {courses.length > 0 && (
-                        <div className="mt-4 pt-4 border-t border-gray-800">
-                            <p className="text-gray-400 text-sm">Total Courses: {courses.length}</p>
-                        </div>
-                    )}
-                </motion.div>
+
+
+                        {/* Footer with Total Count */}
+                        {courses.length > 0 && (
+                            <div className="mt-4 pt-4 border-t border-gray-800">
+                                <p className="text-gray-400 text-sm">Total Courses: {courses.length}</p>
+                            </div>
+                        )}
+                    </motion.div>
+                </div>
             </div>
-        </div>
+        </ProtectedRoute>
     );
 };
 

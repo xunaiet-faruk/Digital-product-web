@@ -34,6 +34,15 @@ const Page = () => {
         }
     };
 
+    const handleView = (courseId) => {
+        if (!user) {
+            router.push(`/Authentication/login?redirect=/courses/${courseId}`);
+            return;
+        }
+
+        router.push(`/courses/${courseId}`);
+    };
+
 
 
     return (
@@ -287,13 +296,7 @@ const Page = () => {
                                         <span className="text-sm text-gray-500 line-through ml-2">${course.originalPrice || Math.round(course.price * 1.5)}</span>
                                     </div>
                                     <motion.button
-                                        onClick={() => {
-                                            if (!user) {
-                                                router.push("Authentication/login");
-                                            } else {
-                                                router.push(`/courses/${course.id}`);
-                                            }
-                                        }}
+                                        onClick={() => handleView(course.id)}
                                         className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white py-1 px-2 rounded-lg"
                                         whileHover={{ scale: 1.1 }}
                                         whileTap={{ scale: 0.95 }}
